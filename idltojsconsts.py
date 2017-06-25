@@ -29,11 +29,15 @@ def extract_consts(gecko_dir, filenames):
         idl.resolve([idl_base_dir], p)
         for production in idl.productions:
             if production.kind == 'interface':
-                print("const {} = {{".format(production.name))
-                for member in production.members:
-                    if member.kind == 'const':
-                        print("    {}: {},".format(member.name, member.value(idl)))
-                print("};")
+                const_members = [mm for mm in production.members
+                                 if mm.kind == 'const']
+                # Print interface only if there are const members
+                if const_members:
+                    print("const {} = {{".format(production.name))
+                    for member in const_members:
+                        print("    {}: {},".format(member.name,
+                                                   member.value(idl)))
+                    print("};")
 
 def add_xpidl_import_path(gecko_dir):
     import_dir = os.path.join(gecko_dir, 'xpcom', 'idl-parser', 'xpidl')
