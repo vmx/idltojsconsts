@@ -51,7 +51,7 @@ def main(argv=None):
         argv = sys.argv
 
     if len(argv) < 3:
-        print("Usage: {} <path-to-gecko> <IDL-file>...".format(argv[0]))
+        print("Usage: {} <path-to-gecko-src> <IDL-file>...".format(argv[0]))
         return 2
 
     gecko_dir = argv[1]
