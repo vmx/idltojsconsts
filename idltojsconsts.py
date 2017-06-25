@@ -23,10 +23,13 @@ def extract_consts(gecko_dir, filenames):
     # The directory where the base IDLs are
     idl_base_dir = os.path.join(gecko_dir, 'xpcom', 'base')
 
+    # By default also include the directories the given IDLs are in
+    idl_dirs = [os.path.dirname(ff) for ff in filenames] + [idl_base_dir]
+
     p = xpidl.IDLParser()
     for f in filenames:
         idl = p.parse(open(f).read(), filename=f)
-        idl.resolve([idl_base_dir], p)
+        idl.resolve(idl_dirs, p)
         for production in idl.productions:
             if production.kind == 'interface':
                 const_members = [mm for mm in production.members
