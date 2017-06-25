@@ -47,7 +47,7 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv
 
-    if len(argv) != 3:
+    if len(argv) < 3:
         print("Usage: {} <path-to-gecko> <IDL-file>...".format(argv[0]))
         return 2
 
