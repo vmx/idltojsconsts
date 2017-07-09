@@ -19,7 +19,7 @@ import sys
 
 def extract_consts(gecko_dir, filenames):
     import xpidl
-    
+
     # The directory where the base IDLs are
     idl_base_dir = os.path.join(gecko_dir, 'xpcom', 'base')
 
@@ -45,7 +45,7 @@ def extract_consts(gecko_dir, filenames):
 def add_xpidl_import_path(gecko_dir):
     import_dir = os.path.join(gecko_dir, 'xpcom', 'idl-parser', 'xpidl')
     sys.path.append(import_dir)
-    
+
 def main(argv=None):
     if argv is None:
         argv = sys.argv
