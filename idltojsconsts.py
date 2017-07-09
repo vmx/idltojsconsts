@@ -20,11 +20,13 @@ import sys
 def extract_consts(gecko_dir, filenames):
     import xpidl
 
-    # The directory where the base IDLs are
-    idl_base_dir = os.path.join(gecko_dir, 'xpcom', 'base')
+    # The directories where the base IDLs are
+    idl_xpcom_base_dir = os.path.join(gecko_dir, 'xpcom', 'base')
+    idl_dom_base_dir = os.path.join(gecko_dir, 'dom', 'interfaces', 'base')
 
     # By default also include the directories the given IDLs are in
-    idl_dirs = [os.path.dirname(ff) for ff in filenames] + [idl_base_dir]
+    idl_dirs = [os.path.dirname(ff) for ff in filenames] + [
+        idl_xpcom_base_dir, idl_dom_base_dir]
 
     p = xpidl.IDLParser()
     for f in filenames:
